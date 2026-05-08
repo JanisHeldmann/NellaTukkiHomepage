@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Nella Turkki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #18170f;
+      --white:  #ffffff;
+      --paper:  #f7f4ef;
+      --paper2: #f0ece4;
+      --mid:    #7a7870;
+      --light:  #c4bfb5;
+      --rule:   #e2ddd5;
+      --moss:   #4a5240;
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --display:'Bodoni Moda', 'Bodoni MT', Georgia, serif;
+      --sans:   'Montserrat', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3.5rem;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+
+    /* ── PAGE HEADER ── */
+    .cv-header {
+      padding: 9rem 3.5rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: end;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .cv-header h1 {
+      font-family: var(--display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .cv-header h1 em {
+      font-style: italic;
+      color: var(--mid);
+      display: block;
+    }
+
+    .cv-header-meta p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 0.4rem;
+    }
+
+    .cv-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--ink);
+      padding-bottom: 0.15rem;
+      transition: opacity 0.2s;
+    }
+
+    .cv-download:hover { opacity: 0.45; }
+
+    /* ── MAIN LAYOUT ── */
+    .cv-body {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 3.5rem 6rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+    }
+
+    /* ── SIDEBAR ── */
+    .cv-sidebar {
+      padding: 4rem 2rem 4rem 0;
+      border-right: 0.5px solid var(--rule);
+      position: sticky;
+      top: 5rem;
+      align-self: start;
+    }
+
+    .cv-sidebar nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .cv-sidebar nav a {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      padding: 0.4rem 0;
+      display: block;
+      transition: color 0.2s;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+    }
+
+    .cv-sidebar nav a:hover { color: var(--ink); }
+    .cv-sidebar nav a.active { color: var(--ink); border-left-color: var(--moss); }
+
+    /* ── CV SECTIONS ── */
+    .cv-main {
+      padding: 4rem 0 4rem 4rem;
+    }
+
+    .cv-section {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .cv-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .cv-section-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cv-section-title::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--rule);
+    }
+
+    /* CV entry row */
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 7rem 1fr;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-top: 0.5px solid var(--rule);
+      align-items: start;
+    }
+
+    .cv-entry:first-of-type { border-top: none; padding-top: 0; }
+
+    .cv-year {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--light);
+      letter-spacing: 0.06em;
+      padding-top: 0.15rem;
+      line-height: 1.4;
+    }
+
+    .cv-entry-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+
+    .cv-entry-title em { font-style: italic; }
+
+    .cv-entry-sub {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 0.2rem;
+    }
+
+    .cv-entry-detail {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--light);
+      line-height: 1.5;
+    }
+
+    /* Tags */
+    .cv-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .cv-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--moss);
+      border: 0.5px solid var(--rule);
+      padding: 0.15rem 0.5rem;
+    }
+
+    /* Award badge */
+    .cv-award {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: #7a6040;
+      margin-top: 0.4rem;
+    }
+
+    .cv-award::before {
+      content: '★';
+      font-size: 0.6rem;
+      color: #b09060;
+    }
+
+    /* Publication DOI link */
+    .cv-doi {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.68rem;
+      color: var(--moss);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--rule);
+      padding-bottom: 0.1rem;
+      transition: border-color 0.2s;
+    }
+
+    .cv-doi:hover { border-color: var(--moss); }
+
+    /* Presentations prose block */
+    .cv-prose {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: #4a4840;
+    }
+
+    .cv-prose em {
+      font-style: normal;
+      color: var(--ink);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.5rem 3.5rem;
+      background: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.2); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .cv-header { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.5rem 3rem; }
+      .cv-body { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; }
+      .cv-sidebar { display: none; }
+      .cv-main { padding: 3rem 0; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Nella Turkki</a>
+    <ul class="nav-links">
+      <li><a href="index.html#intro">About</a></li>
+      <li><a href="index.html#performances">Work</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#coaching">Coaching</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="cv.html" class="active">CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="cv-header">
+    <h1>Nella<br />Turkki</h1>
+    <div class="cv-header-meta">
+      <p>Dance artist · Choreographer · Theatre director</p>
+      <p>Researcher · Pedagogue · Community art practitioner</p>
+      <p style="margin-top:0.8rem;">Based in Vaasa, Finland</p>
+      <!-- Uncomment and update when PDF is ready:
+      <a href="nella-turkki-cv.pdf" class="cv-download" download>Download PDF ↓</a>
+      -->
+    </div>
+  </div>
+
+  <div class="cv-body">
+
+    <!-- SIDEBAR navigation -->
+    <aside class="cv-sidebar">
+      <nav>
+        <ul>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#performances">Performances</a></li>
+          <li><a href="#community">Community Art</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#presentations">Presentations</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="cv-main">
+
+      <!-- EDUCATION -->
+      <section class="cv-section" id="education">
+        <h2 class="cv-section-title">Education</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year">2018 – 2020</span>
+          <div>
+            <p class="cv-entry-title">MA in Dance Art &amp; Dance Pedagogy</p>
+            <p class="cv-entry-sub">Theatre Academy, Uniarts Helsinki, Finland</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2014 – 2017</span>
+          <div>
+            <p class="cv-entry-title">BA in Contemporary Dance Studies</p>
+            <p class="cv-entry-sub">Hochschule für Musik und Tanz, Cologne, Germany</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2010 – 2014</span>
+          <div>
+            <p class="cv-entry-title">BA in Drama Instruction, Theatre &amp; Puppetry</p>
+            <p class="cv-entry-sub">Arts Academy, University of Applied Sciences, Turku, Finland</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEACHING & COORDINATION -->
+      <section class="cv-section" id="teaching">
+        <h2 class="cv-section-title">Teaching &amp; Coordination</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year">2022 –<br />present</span>
+          <div>
+            <p class="cv-entry-title">Planning Teacher of Performing Arts</p>
+            <p class="cv-entry-sub">TaiKon – City of Vaasa, Finland</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2020 – 2022</span>
+          <div>
+            <p class="cv-entry-title">Dance Teacher <span style="font-weight:300;font-size:0.85em;color:var(--mid)">(full-time)</span></p>
+            <p class="cv-entry-sub">Soisalo-opisto – City of Varkaus, Finland</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">Apr – Jun<br />2021</span>
+          <div>
+            <p class="cv-entry-title">Planning Teacher <span style="font-weight:300;font-size:0.85em;color:var(--mid)">(substitute)</span></p>
+            <p class="cv-entry-sub">Soisalo-opisto – City of Varkaus, Finland</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERFORMANCES -->
+      <section class="cv-section" id="performances">
+        <h2 class="cv-section-title">Performances</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year">2026</span>
+          <div>
+            <p class="cv-entry-title"><em>Oikeusjuttu</em></p>
+            <p class="cv-entry-sub">Choreographer · Direction: Mikko Korsulainen</p>
+            <p class="cv-entry-detail">Oulu Theatre, Finland · Premiere March 2026</p>
+            <div class="cv-tags"><span class="cv-tag">Youth theatre</span></div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2026</span>
+          <div>
+            <p class="cv-entry-title"><em>Juurimatka</em></p>
+            <p class="cv-entry-sub">Director / choreographer</p>
+            <p class="cv-entry-detail">Oulu 2026 European Capital of Culture, Finland</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2023 – 2025</span>
+          <div>
+            <p class="cv-entry-title"><em>Lavatanssit</em></p>
+            <p class="cv-entry-sub">Dance artist / choreographer · With Marje Hirvonen</p>
+            <p class="cv-entry-detail">
+              Münsterland Festival, Emsdetten, Germany (Sep 2023) ·
+              Tanztausch Festival, Cologne (Sep 2024) ·
+              Playground – Dance Festival, Wuppertal (Jul 2025)
+            </p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2019</span>
+          <div>
+            <p class="cv-entry-title"><em>ILMA</em></p>
+            <p class="cv-entry-sub">Director / choreographer</p>
+            <p class="cv-entry-detail">Zodiak New Dance Centre, Helsinki, Finland · December 2019</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2019</span>
+          <div>
+            <p class="cv-entry-title"><em>I, Holobiont</em></p>
+            <p class="cv-entry-sub">Dancer &amp; choreographer · With Janis Heldmann</p>
+            <p class="cv-entry-detail">Pottporus Festival, Herne, Germany · Premiere October 2019</p>
+            <div class="cv-tags"><span class="cv-tag">Lecture-performance</span><span class="cv-tag">Interdisciplinary</span></div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2019</span>
+          <div>
+            <p class="cv-entry-title"><em>HOLD ON</em></p>
+            <p class="cv-entry-sub">Director / choreographer · With Emma Valtonen</p>
+            <p class="cv-entry-detail">Tanzhaus NRW, Düsseldorf, Germany · July 2019</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2017</span>
+          <div>
+            <p class="cv-entry-title"><em>Flames Musical</em> <span style="font-style:normal;font-size:0.85em">(org. Liekit-Musikaali)</span></p>
+            <p class="cv-entry-sub">Director</p>
+            <p class="cv-entry-detail">Finnish community in Germany · Cologne &amp; Frankfurt · Premiere October 2017</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2017</span>
+          <div>
+            <p class="cv-entry-title"><em>FEST</em></p>
+            <p class="cv-entry-sub">Director / choreographer</p>
+            <p class="cv-entry-detail">
+              TanzFaktur, Cologne (Premiere March 2017) ·
+              Faces-Festival, Fiskars, Finland (Aug 2017) ·
+              Tanztausch-Festival, Cologne (Dec 2017)
+            </p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2015</span>
+          <div>
+            <p class="cv-entry-title"><em>Memento</em></p>
+            <p class="cv-entry-sub">Director · With Strings Theatre Company</p>
+            <p class="cv-entry-detail">Imaginarius – Theatre Festival, Santa Maria da Feira, Portugal · May 2015</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2015</span>
+          <div>
+            <p class="cv-entry-title"><em>Embellished Abundance</em></p>
+            <p class="cv-entry-sub">Performer</p>
+            <p class="cv-entry-detail">J'Agura – Love Festival, South Bank, London, UK · August 2015</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2014 – 2017</span>
+          <div>
+            <p class="cv-entry-title"><em>Anhel</em></p>
+            <p class="cv-entry-sub">Dancer &amp; choreographer</p>
+            <p class="cv-entry-detail">
+              Premiere: Capellades, Spain (Dec 2013) ·
+              Espaço Compasso, Porto (2014) ·
+              Helsinki (Apr 2014) ·
+              Le Chene, Paris (Feb 2015) ·
+              Faki Festival, Zagreb (May 2015) ·
+              ZIL Festival for Contemporary Dance, Moscow (Jul 2015) ·
+              TanzFaktur, Cologne (Mar 2017)
+            </p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2014 – 2017</span>
+          <div>
+            <p class="cv-entry-title"><em>The Strings</em></p>
+            <p class="cv-entry-sub">Physical theatre &amp; dance · Strings Theatre Company</p>
+            <p class="cv-entry-detail">
+              Premiere: Edificio AXA, Porto (Jan 2014) ·
+              Imaginarius Festival, Portugal (Jun 2014) ·
+              Le Chene, Paris (Feb 2015) ·
+              International Theatre Festival, Kerala, India (Feb 2017)
+            </p>
+            <p class="cv-award">Award of the street theatre part — Imaginarius Festival, Portugal, 2014</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2014 – 2016</span>
+          <div>
+            <p class="cv-entry-title"><em>JINN</em></p>
+            <p class="cv-entry-sub">Dancer &amp; choreographer</p>
+            <p class="cv-entry-detail">New York University, Abu Dhabi, UAE · Nov 2014 – Apr 2016 · Premiere March 2016</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2011</span>
+          <div>
+            <p class="cv-entry-title"><em>Happened Here Today</em></p>
+            <p class="cv-entry-sub">Performer / collaborator</p>
+            <p class="cv-entry-detail">Eduardo Mondlane University Theatre Department, Maputo, Mozambique · August 2011</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY ART -->
+      <section class="cv-section" id="community">
+        <h2 class="cv-section-title">Community Art</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year">2025</span>
+          <div>
+            <p class="cv-entry-title"><em>Berührungspunkte</em> Vol II</p>
+            <p class="cv-entry-sub">Director / choreographer</p>
+            <p class="cv-entry-detail">City Theatre Oberhausen, Germany · October 2025</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2022</span>
+          <div>
+            <p class="cv-entry-title"><em>Metsänalaiset</em></p>
+            <p class="cv-entry-sub">Ensemble performer / initiator / choreographer</p>
+            <p class="cv-entry-detail">Forests in Vantaa &amp; Varkaus, Finland · July – September 2022</p>
+            <div class="cv-tags"><span class="cv-tag">Site-specific</span><span class="cv-tag">Ecology</span><span class="cv-tag">Participatory</span></div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2022</span>
+          <div>
+            <p class="cv-entry-title"><em>Vapaus olla!</em> — short film</p>
+            <p class="cv-entry-sub">Director</p>
+            <p class="cv-entry-detail">Created with 60 children and youth · City of Varkaus, Finland · 2022</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2019</span>
+          <div>
+            <p class="cv-entry-title"><em>#LUFT</em></p>
+            <p class="cv-entry-sub">Director / choreographer</p>
+            <p class="cv-entry-detail">Pottporus Festival &amp; Chance Tanz, Herne, Germany · Premiere October 2019</p>
+            <div class="cv-tags"><span class="cv-tag">Climate</span><span class="cv-tag">Youth</span></div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2019</span>
+          <div>
+            <p class="cv-entry-title"><em>Berührungspunkte</em></p>
+            <p class="cv-entry-sub">Participatory dance piece / artistic workshop of touch</p>
+            <p class="cv-entry-detail">Funder: LAG Tanz, Herne, Germany · August 2019</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2018</span>
+          <div>
+            <p class="cv-entry-title">Getting in Touch</p>
+            <p class="cv-entry-sub">Dance project with young people with recent immigration background</p>
+            <p class="cv-entry-detail">City of Herne &amp; Pottporus Dance School, Germany · October 2018</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2014 – 2015</span>
+          <div>
+            <p class="cv-entry-title"><em>Travelogues in this town</em></p>
+            <p class="cv-entry-sub">Artist / director</p>
+            <p class="cv-entry-detail">Oulu Reception Centre &amp; Arts Promotion Centre Finland · August 2014 – 2015</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2013 – 2014</span>
+          <div>
+            <p class="cv-entry-title"><em>PopOrNot!?</em></p>
+            <p class="cv-entry-sub">Director — visiting theatre &amp; puppetry show on discrimination and bullying</p>
+            <p class="cv-entry-detail">Arts Promotion Centre &amp; collaborative schools, Finland · October 2013 – September 2014</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section class="cv-section" id="research">
+        <h2 class="cv-section-title">Research Focus</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year"></span>
+          <div>
+            <p class="cv-entry-title">Eco-social justice in dance education</p>
+            <p class="cv-entry-sub">How embodied and arts-based practices address ecological and social questions simultaneously in educational contexts.</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year"></span>
+          <div>
+            <p class="cv-entry-title">Embodied learning environments</p>
+            <p class="cv-entry-sub">How somatic awareness, presence, and physical attunement shape the dynamics of learning spaces.</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year"></span>
+          <div>
+            <p class="cv-entry-title">Arts-based methods &amp; multispecies thinking</p>
+            <p class="cv-entry-sub">Using art as a research method for exploring human-environment relations — developed through works such as <em>I, Holobiont</em> and <em>Metsänalaiset</em>.</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">In progress</span>
+          <div>
+            <p class="cv-entry-title">PhD — Education or Arts-Based Practice</p>
+            <p class="cv-entry-sub">Nella is actively developing a doctoral research proposal on how embodied, ecological approaches can transform learning, relation, and action in the world.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUBLICATIONS -->
+      <section class="cv-section" id="publications">
+        <h2 class="cv-section-title">Publications</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year">2022</span>
+          <div>
+            <p class="cv-entry-title">Ilmaan kietoutuneet — Ryhmälähtöinen tanssiteos avaamassa ymmärrystä osallisuudesta ilmastoon</p>
+            <p class="cv-entry-sub">Nella Turkki · <em>Sosiaalipedagogiikan aikakausikirja</em>, 2022</p>
+            <a href="https://doi.org/10.30675/sa.109417" class="cv-doi" target="_blank" rel="noopener">doi.org/10.30675/sa.109417</a>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2021</span>
+          <div>
+            <p class="cv-entry-title">EcoJustice Approach to Dance Education</p>
+            <p class="cv-entry-sub">Raisa Foster &amp; Nella Turkki · <em>Journal of Dance Education</em>, 2021</p>
+            <a href="https://doi.org/10.1080/15290824.2021.1906430" class="cv-doi" target="_blank" rel="noopener">doi.org/10.1080/15290824.2021.1906430</a>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2020</span>
+          <div>
+            <p class="cv-entry-title">In the air — Moving through climate emotions</p>
+            <p class="cv-entry-sub">Nella Turkki &amp; Anna Lehtonen · <em>DRAMA</em>, Vol. 57, Iss. 2, pp. 20–25, 2020</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <span class="cv-year">2020</span>
+          <div>
+            <p class="cv-entry-title">Woven Into the Air — Dance as a Practice Towards Ecologically and Socially Just Communities</p>
+            <p class="cv-entry-sub">Nella Turkki · Master Thesis, Uniarts Helsinki, 2020</p>
+            <a href="https://helda.helsinki.fi/handle/10138/318064" class="cv-doi" target="_blank" rel="noopener">helda.helsinki.fi/handle/10138/318064</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRESENTATIONS -->
+      <section class="cv-section" id="presentations">
+        <h2 class="cv-section-title">Academic Presentations &amp; Training</h2>
+        <div class="cv-entry">
+          <span class="cv-year"></span>
+          <p class="cv-prose">
+            Nella has delivered trainings, workshops, and academic presentations on eco-social sustainability and climate awareness in art at universities across Finland and internationally — including
+            <em>Aalto University</em>,
+            <em>University of Helsinki</em> (HY+ project),
+            <em>University of Tampere</em>,
+            <em>New York University in Abu Dhabi</em>, and
+            <em>Hochschule für Musik und Tanz Köln</em>.
+          </p>
+        </div>
+      </section>
+
+      <!-- LEADERSHIP -->
+      <section class="cv-section" id="leadership">
+        <h2 class="cv-section-title">Leadership &amp; Governance</h2>
+
+        <div class="cv-entry">
+          <span class="cv-year">2025 –<br />present</span>
+          <div>
+            <p class="cv-entry-title">President of the Board</p>
+            <p class="cv-entry-sub">JoJo – Oulu Dance Centre, Finland</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <span class="footer-logo">Nella Turkki</span>
+    <span class="footer-copy">&copy; 2026 · Vaasa, Finland</span>
+  </footer>
+
+  <script>
+    // Highlight sidebar nav on scroll
+    (function () {
+      const sections = document.querySelectorAll('.cv-section');
+      const links = document.querySelectorAll('.cv-sidebar nav a');
+      if (!sections.length || !links.length) return;
+
+      const obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            links.forEach(function (l) {
+              l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(function (s) { obs.observe(s); });
+    })();
+  </script>
+
+</body>
+</html>
