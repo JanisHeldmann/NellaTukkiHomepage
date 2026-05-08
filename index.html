@@ -1234,9 +1234,93 @@
       footer { flex-direction: column; gap: 0.4rem; text-align: center; }
     }
 
-    @media (max-width: 580px) {
-      .nav-links li:nth-child(n+3) { display: none; }
-      .hero-name { font-size: clamp(4rem, 20vw, 6rem); }
+    /* ── SECTION NAV ── */
+    .section-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--ink);
+    }
+
+    .section-nav-item {
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      aspect-ratio: 4/3;
+      background: #222;
+    }
+
+    /* Image */
+    .section-nav-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.6s ease;
+      filter: brightness(0.55);
+    }
+
+    .section-nav-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.35);
+    }
+
+    /* Placeholder when no image */
+    .section-nav-ph {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #1e1e1a;
+      transition: background 0.3s;
+    }
+
+    .section-nav-item:hover .section-nav-ph { background: #161614; }
+
+    /* Text overlay */
+    .section-nav-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 2rem 1.8rem;
+    }
+
+    .section-nav-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .section-nav-item:hover .section-nav-label { color: rgba(255,255,255,0.6); }
+
+    .section-nav-title {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .section-nav-arrow {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .section-nav-item:hover .section-nav-arrow {
+      color: rgba(255,255,255,0.7);
+      transform: translate(3px, -3px);
+    }
+
+    @media (max-width: 640px) {
+      .section-nav { grid-template-columns: 1fr; }
+      .section-nav-item { aspect-ratio: 3/1; }
     }
 
     /* ── HANDWRITING ANNOTATIONS ── */
@@ -1324,14 +1408,10 @@
   </nav>
 
   <!-- HERO -->
-  <!--
-    VIDEO: When ready, uncomment <video> and remove <div class="hero-bg">
-    <video class="hero-video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
-      <source src="videos/hero.mp4" type="video/mp4" />
-    </video>
-  -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="NellaHeroBackground.mp4" type="video/mp4" />
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-descriptor">
@@ -1349,6 +1429,48 @@
       <span class="hero-scroll-hint">Scroll to explore</span>
     </div>
   </section>
+
+  <!-- SECTION NAVIGATION -->
+  <div class="section-nav">
+
+    <a href="#performances" class="section-nav-item">
+      <!--
+        Add an image: <img src="images/nav-performances.jpg" alt="Performances" />
+        Remove the .section-nav-ph div below when image is added.
+      -->
+      <div class="section-nav-ph"></div>
+      <div class="section-nav-text">
+        <span class="section-nav-label">Work</span>
+        <span class="section-nav-title">Performances &amp;<br />Community Art</span>
+      </div>
+      <span class="section-nav-arrow">↗</span>
+    </a>
+
+    <a href="#research" class="section-nav-item">
+      <!--
+        Add an image: <img src="images/nav-research.jpg" alt="Research" />
+      -->
+      <div class="section-nav-ph"></div>
+      <div class="section-nav-text">
+        <span class="section-nav-label">Academic</span>
+        <span class="section-nav-title">Research &amp;<br />Scholarship</span>
+      </div>
+      <span class="section-nav-arrow">↗</span>
+    </a>
+
+    <a href="#coaching" class="section-nav-item">
+      <!--
+        Add an image: <img src="images/nav-coaching.jpg" alt="Coaching" />
+      -->
+      <div class="section-nav-ph"></div>
+      <div class="section-nav-text">
+        <span class="section-nav-label">Practice</span>
+        <span class="section-nav-title">Coaching &amp;<br />Embodiment</span>
+      </div>
+      <span class="section-nav-arrow">↗</span>
+    </a>
+
+  </div>
 
   <!-- SLIDESHOW -->
   <!--
