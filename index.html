@@ -1221,83 +1221,110 @@
     .section-nav {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      background: var(--white);
-      border-top: 0.5px solid var(--rule);
-      border-bottom: 0.5px solid var(--rule);
+      gap: 2px;
+      background: var(--ink);
     }
 
     .section-nav-item {
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 4rem 2rem;
-      cursor: pointer;
-      border-right: 0.5px solid var(--rule);
-      transition: background 0.25s;
-    }
-
-    .section-nav-item:last-child { border-right: none; }
-    .section-nav-item:hover { background: var(--paper); }
-
-    /* Circular image */
-    .section-nav-circle {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
+      position: relative;
       overflow: hidden;
-      margin-bottom: 2rem;
-      background: var(--paper2);
-      flex-shrink: 0;
+      text-decoration: none;
+      display: block;
+      aspect-ratio: 4/3;
+      background: #1e1e1a;
     }
 
-    .section-nav-circle img {
+    .section-nav-item img {
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: brightness(0.55);
     }
 
-    .section-nav-item:hover .section-nav-circle img { transform: scale(1.06); }
+    .section-nav-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.25);
+    }
 
-    /* Placeholder circle */
     .section-nav-ph {
       width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 0.75rem;
-      color: var(--light);
-      text-align: center;
-      padding: 1rem;
+      background: #1e1e1a;
+      transition: background 0.3s;
     }
+
+    .section-nav-item:hover .section-nav-ph { background: #141412; }
+
+    /* Always-visible title at bottom */
+    .section-nav-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      pointer-events: none;
+    }
+
+    .section-nav-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 0.4rem;
+      transition: color 0.3s;
+    }
+
+    .section-nav-item:hover .section-nav-label { color: rgba(255,255,255,0.55); }
 
     .section-nav-title {
-      font-family: var(--sans);
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--ink);
-      text-align: center;
-      margin-bottom: 0.9rem;
-      letter-spacing: 0.02em;
-    }
-
-    .section-nav-desc {
-      font-size: 0.8rem;
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2vw, 1.65rem);
       font-weight: 300;
-      color: var(--mid);
-      text-align: center;
-      line-height: 1.75;
-      max-width: 22ch;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0;
+      transition: margin-bottom 0.35s ease;
     }
 
-    @media (max-width: 700px) {
-      .section-nav { grid-template-columns: 1fr; }
-      .section-nav-item { border-right: none; border-bottom: 0.5px solid var(--rule); padding: 3rem 2rem; }
-      .section-nav-item:last-child { border-bottom: none; }
-      .section-nav-circle { width: 130px; height: 130px; }
+    .section-nav-item:hover .section-nav-title { margin-bottom: 0.75rem; }
+
+    /* Description — hidden, slides up on hover */
+    .section-nav-desc {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.35s ease;
+    }
+
+    .section-nav-item:hover .section-nav-desc {
+      max-height: 6rem;
+      opacity: 1;
+    }
+
+    .section-nav-arrow {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.25);
+      transition: color 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+
+    .section-nav-item:hover .section-nav-arrow {
+      color: rgba(255,255,255,0.65);
+      transform: translate(3px, -3px);
+    }
+
+    @media (max-width: 640px) {
+      .section-nav { grid-template-columns: 1fr; gap: 2px; }
+      .section-nav-item { aspect-ratio: 3/1; }
+      .section-nav-desc { max-height: 6rem; opacity: 1; }
     }
 
     /* ── HANDWRITING ANNOTATIONS ── */
@@ -1439,30 +1466,36 @@
   <div class="section-nav">
 
     <a href="#performances" class="section-nav-item">
-      <div class="section-nav-circle">
-        <!-- <img src="images/nav-performances.jpg" alt="Performances & Community Art" /> -->
-        <div class="section-nav-ph">Add photo</div>
+      <!-- <img src="images/nav-performances.jpg" alt="Performances & Community Art" /> -->
+      <div class="section-nav-ph"></div>
+      <div class="section-nav-text">
+        <span class="section-nav-label">Work</span>
+        <span class="section-nav-title">Performances &amp;<br />Community Art</span>
+        <p class="section-nav-desc">Stage work, community projects, and participatory art across Finland and internationally.</p>
       </div>
-      <h3 class="section-nav-title">Performances &amp; Community Art</h3>
-      <p class="section-nav-desc">Stage work, community projects, and participatory art across Finland and internationally.</p>
+      <span class="section-nav-arrow">↗</span>
     </a>
 
     <a href="#research" class="section-nav-item">
-      <div class="section-nav-circle">
-        <!-- <img src="images/nav-research.jpg" alt="Research & Scholarship" /> -->
-        <div class="section-nav-ph">Add photo</div>
+      <!-- <img src="images/nav-research.jpg" alt="Research & Scholarship" /> -->
+      <div class="section-nav-ph"></div>
+      <div class="section-nav-text">
+        <span class="section-nav-label">Academic</span>
+        <span class="section-nav-title">Research &amp;<br />Scholarship</span>
+        <p class="section-nav-desc">Peer-reviewed publications and academic work on eco-social justice in dance education.</p>
       </div>
-      <h3 class="section-nav-title">Research &amp; Scholarship</h3>
-      <p class="section-nav-desc">Peer-reviewed publications and academic work on eco-social justice in dance education.</p>
+      <span class="section-nav-arrow">↗</span>
     </a>
 
     <a href="#coaching" class="section-nav-item">
-      <div class="section-nav-circle">
-        <!-- <img src="images/nav-coaching.jpg" alt="Coaching & Embodiment" /> -->
-        <div class="section-nav-ph">Add photo</div>
+      <!-- <img src="images/nav-coaching.jpg" alt="Coaching & Embodiment" /> -->
+      <div class="section-nav-ph"></div>
+      <div class="section-nav-text">
+        <span class="section-nav-label">Practice</span>
+        <span class="section-nav-title">Coaching &amp;<br />Embodiment</span>
+        <p class="section-nav-desc">Workshops, individual coaching, and service design grounded in somatic and movement practice.</p>
       </div>
-      <h3 class="section-nav-title">Coaching &amp; Embodiment</h3>
-      <p class="section-nav-desc">Workshops, individual coaching, and service design grounded in somatic and movement practice.</p>
+      <span class="section-nav-arrow">↗</span>
     </a>
 
   </div>
