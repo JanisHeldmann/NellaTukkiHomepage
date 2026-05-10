@@ -382,13 +382,13 @@
     /* Filter tabs */
     .work-filters {
       display: flex;
-      padding: 3.5rem 3.5rem 0;
-      margin-bottom: 2.5rem;
+      padding: 3.5rem 3.5rem 3rem;
+      margin-bottom: 0;
       max-width: 1180px;
       margin-left: auto;
       margin-right: auto;
       border-bottom: 0.5px solid var(--rule);
-      position: relative; /* ensure absolute children position correctly */
+      position: relative;
     }
 
     .work-filter {
@@ -1346,8 +1346,6 @@
       line-height: 1.3;
       pointer-events: none;
       white-space: nowrap;
-
-      /* hidden until triggered */
       opacity: 0;
       transform: translateY(6px) rotate(var(--hw-rot, -1deg));
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -1470,8 +1468,7 @@
   <div class="section-nav">
 
     <a href="#performances" class="section-nav-item">
-      <!-- <img src="images/nav-performances.jpg" alt="Performances & Community Art" /> -->
-      <div class="section-nav-ph"></div>
+      <img src="images/nav-performances.jpg" alt="Performances & Community Art" />
       <div class="section-nav-text">
         <span class="section-nav-label">Work</span>
         <span class="section-nav-title">Performances &amp;<br />Community Art</span>
@@ -1491,8 +1488,7 @@
     </a>
 
     <a href="#coaching" class="section-nav-item">
-      <!-- <img src="images/nav-coaching.jpg" alt="Coaching & Embodiment" /> -->
-      <div class="section-nav-ph"></div>
+      <img src="images/nav-coaching.jpg" alt="Coaching & Embodiment" />
       <div class="section-nav-text">
         <span class="section-nav-label">Practice</span>
         <span class="section-nav-title">Coaching &amp;<br />Embodiment</span>
@@ -1541,22 +1537,17 @@
       <button class="work-filter" data-filter="performance">Performances</button>
       <button class="work-filter" data-filter="community">Community Art</button>
 
-      <!-- Note 1: above "All" tab, pointing down -->
-      <span class="hw-note" style="--hw-rot: -2deg; top: -3rem; left: -0.2rem;">
+      <!-- Note 1: above "All" tab, pointing down to it -->
+      <span class="hw-note" style="--hw-rot: -2deg; bottom: 2.8rem; left: 0rem;">
         explore my work
       </span>
-      <svg class="hw-arrow" style="top:-0.6rem; left:1.6rem; width:24px; height:22px;" viewBox="0 0 24 22">
-        <path d="M12 2 C11 8, 10 14, 10 19 M6 14 L10 19 L14 14"/>
+      <svg class="hw-arrow" style="bottom:1.4rem; left:1rem; width:20px; height:18px;" viewBox="0 0 20 18">
+        <path d="M10 2 L10 14 M5 10 L10 15 L15 10"/>
       </svg>
 
-      <!-- Note 2: above filter tabs, offset right and lower so it doesn't clash -->
-      <span class="hw-note hw-desktop" style="--hw-rot: 1deg; top: -1.6rem; left: 7rem;">
+      <!-- Note 2: above Performances + Community Art tabs -->
+      <span class="hw-note hw-desktop" style="--hw-rot: 1deg; bottom: 2.8rem; left: 8rem;">
         or filter by type →
-      </span>
-
-      <!-- Note 3: swipe hint, far right -->
-      <span class="hw-note" style="--hw-rot: -1.5deg; top: -3rem; right: 0; left: auto;">
-        swipe to browse →
       </span>
 
     </div>
@@ -1566,8 +1557,7 @@
 
         <!-- Oikeusjuttu 2026 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/oikeusjuttu.jpg" alt="Oikeusjuttu" /> -->
-            <div class="perf-img-ph">Add photo — Oikeusjuttu</div></div>
+          <div class="perf-img"><img src="images/oikeusjuttu.jpg" alt="Oikeusjuttu" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2026</span>
@@ -1580,8 +1570,7 @@
 
         <!-- Juurimatka 2026 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/juurimatka.jpg" alt="Juurimatka" /> -->
-            <div class="perf-img-ph">Add photo — Juurimatka</div></div>
+          <div class="perf-img"><img src="images/juurimatka.jpg" alt="Juurimatka" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2026</span>
@@ -1595,8 +1584,7 @@
 
         <!-- Berührungspunkte Vol II 2025 — community -->
         <div class="perf-card" data-category="community">
-          <div class="perf-img"><!-- <img src="images/beruhrungspunkte2.jpg" alt="Berührungspunkte Vol II" /> -->
-            <div class="perf-img-ph">Add photo — Berührungspunkte Vol II</div></div>
+          <div class="perf-img"><img src="images/beruhrungspunkte2.jpg" alt="Berührungspunkte Vol II" /></div>
           <div class="perf-text">
             <span class="card-category cat-community">Community Art</span>
             <span class="perf-year">2025</span>
@@ -1609,8 +1597,7 @@
 
         <!-- Lavatanssit 2023–25 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/lavatanssit.jpg" alt="Lavatanssit" /> -->
-            <div class="perf-img-ph">Add photo — Lavatanssit</div></div>
+          <div class="perf-img"><img src="images/lavatanssit.jpg" alt="Lavatanssit" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2023 – 2025</span>
@@ -1637,8 +1624,7 @@
 
         <!-- Vapaus olla! 2022 — community -->
         <div class="perf-card" data-category="community">
-          <div class="perf-img"><!-- <img src="images/vapausolla.jpg" alt="Vapaus olla!" /> -->
-            <div class="perf-img-ph">Add photo — Vapaus olla!</div></div>
+          <div class="perf-img"><img src="images/vapausolla.jpg" alt="Vapaus olla!" /></div>
           <div class="perf-text">
             <span class="card-category cat-community">Community Art</span>
             <span class="perf-year">2022</span>
@@ -1691,8 +1677,7 @@
 
         <!-- Berührungspunkte 2019 — community -->
         <div class="perf-card" data-category="community">
-          <div class="perf-img"><!-- <img src="images/beruhrungspunkte.jpg" alt="Berührungspunkte" /> -->
-            <div class="perf-img-ph">Add photo — Berührungspunkte</div></div>
+          <div class="perf-img"><img src="images/beruhrungspunkte.jpg" alt="Berührungspunkte" /></div>
           <div class="perf-text">
             <span class="card-category cat-community">Community Art</span>
             <span class="perf-year">2019</span>
@@ -1705,8 +1690,7 @@
 
         <!-- HOLD ON 2019 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/holdon.jpg" alt="HOLD ON" /> -->
-            <div class="perf-img-ph">Add photo — HOLD ON</div></div>
+          <div class="perf-img"><img src="images/holdon.jpg" alt="HOLD ON" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2019</span>
@@ -1719,8 +1703,7 @@
 
         <!-- Getting in Touch 2018 — community -->
         <div class="perf-card" data-category="community">
-          <div class="perf-img"><!-- <img src="images/gettingintouch.jpg" alt="Getting in Touch" /> -->
-            <div class="perf-img-ph">Add photo — Getting in Touch</div></div>
+          <div class="perf-img"><img src="images/gettingintouch.jpg" alt="Getting in Touch" /></div>
           <div class="perf-text">
             <span class="card-category cat-community">Community Art</span>
             <span class="perf-year">2018</span>
@@ -1733,8 +1716,7 @@
 
         <!-- Flames Musical 2017 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/flames.jpg" alt="Flames Musical" /> -->
-            <div class="perf-img-ph">Add photo — Flames Musical</div></div>
+          <div class="perf-img"><img src="images/flames.jpg" alt="Flames Musical" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2017</span>
@@ -1747,8 +1729,7 @@
 
         <!-- FEST 2017 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/fest.jpg" alt="FEST" /> -->
-            <div class="perf-img-ph">Add photo — FEST</div></div>
+          <div class="perf-img"><img src="images/fest.jpg" alt="FEST" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2017</span>
@@ -1775,8 +1756,7 @@
 
         <!-- The Strings 2014 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/strings.jpg" alt="The Strings" /> -->
-            <div class="perf-img-ph">Add photo — The Strings</div></div>
+          <div class="perf-img"><img src="images/strings.jpg" alt="The Strings" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2014 – 2017</span>
@@ -1789,8 +1769,7 @@
 
         <!-- Memento 2015 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/memento.jpg" alt="Memento" /> -->
-            <div class="perf-img-ph">Add photo — Memento</div></div>
+          <div class="perf-img"><img src="images/memento.jpg" alt="Memento" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2015</span>
@@ -1803,8 +1782,7 @@
 
         <!-- Embellished Abundance 2015 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/embellished.jpg" alt="Embellished Abundance" /> -->
-            <div class="perf-img-ph">Add photo — Embellished Abundance</div></div>
+          <div class="perf-img"><img src="images/embellished.jpg" alt="Embellished Abundance" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2015</span>
@@ -1830,8 +1808,7 @@
 
         <!-- JINN 2014–16 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/jinn.jpg" alt="JINN" /> -->
-            <div class="perf-img-ph">Add photo — JINN</div></div>
+          <div class="perf-img"><img src="images/jinn.jpg" alt="JINN" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2014 – 2016</span>
@@ -1844,8 +1821,7 @@
 
         <!-- PopOrNot!? 2014 — community -->
         <div class="perf-card" data-category="community">
-          <div class="perf-img"><!-- <img src="images/popornot.jpg" alt="PopOrNot!?" /> -->
-            <div class="perf-img-ph">Add photo — PopOrNot!?</div></div>
+          <div class="perf-img"><img src="images/popornot.jpg" alt="PopOrNot!?" /></div>
           <div class="perf-text">
             <span class="card-category cat-community">Community Art</span>
             <span class="perf-year">2014</span>
@@ -1858,8 +1834,7 @@
 
         <!-- Happened Here Today 2011 — performance -->
         <div class="perf-card" data-category="performance">
-          <div class="perf-img"><!-- <img src="images/happenedhere.jpg" alt="Happened Here Today" /> -->
-            <div class="perf-img-ph">Add photo — Happened Here Today</div></div>
+          <div class="perf-img"><img src="images/happenedhere.jpg" alt="Happened Here Today" /></div>
           <div class="perf-text">
             <span class="card-category cat-performance">Performance</span>
             <span class="perf-year">2011</span>
