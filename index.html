@@ -1242,7 +1242,7 @@
       transition: background 0.3s;
     }
 
-    .section-nav-item:hover { background: var(--paper); }
+    .section-nav-item:hover { background: var(--white); }
 
     /* Circle container */
     .section-nav-circle {
@@ -1253,7 +1253,10 @@
       flex-shrink: 0;
       background: #222;
       position: relative;
+      transition: transform 0.4s ease;
     }
+
+    .section-nav-item:hover .section-nav-circle { transform: scale(1.06); }
 
     .section-nav-item img {
       position: absolute;
@@ -1263,13 +1266,12 @@
       object-fit: cover;
       object-position: center;
       display: block;
-      transition: transform 0.6s ease, filter 0.4s ease;
       filter: brightness(0.6);
     }
 
     .section-nav-item:hover .section-nav-circle img {
-      transform: scale(1.05);
-      filter: brightness(0.3);
+      transform: scale(1.0);
+      filter: brightness(0.6);
     }
 
     .section-nav-ph {
