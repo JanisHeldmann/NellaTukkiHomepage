@@ -1503,43 +1503,21 @@
 
   </div>
 
-  <!-- SLIDESHOW -->
-  <div class="slideshow" aria-label="Performance slideshow">
-    <div class="slides" id="slides">
-      <div class="slide active">
-        <!-- <img src="images/perf-01.jpg" alt="FEST" /> -->
-        <div class="slide-ph" style="background:#242420">
-          <span class="slide-ph-n">01</span>
-          <span class="slide-ph-l">Add performance photo — FEST</span>
-        </div>
-      </div>
-      <div class="slide">
-        <!-- <img src="images/perf-02.jpg" alt="Metsänalaiset" /> -->
-        <div class="slide-ph" style="background:#202018">
-          <span class="slide-ph-n">02</span>
-          <span class="slide-ph-l">Add performance photo — Metsänalaiset</span>
-        </div>
-      </div>
-      <div class="slide">
-        <!-- <img src="images/perf-03.jpg" alt="I, Holobiont" /> -->
-        <div class="slide-ph" style="background:#1c1c16">
-          <span class="slide-ph-n">03</span>
-          <span class="slide-ph-l">Add performance photo — I, Holobiont</span>
-        </div>
-      </div>
-      <div class="slide">
-        <!-- <img src="images/perf-04.jpg" alt="Juurimatka" /> -->
-        <div class="slide-ph" style="background:#181814">
-          <span class="slide-ph-n">04</span>
-          <span class="slide-ph-l">Add performance photo — Juurimatka</span>
-        </div>
-      </div>
-    </div>
-    <div class="slide-caption">
-      <span class="slide-caption-text" id="slide-caption-text">FEST - 2023</span>
-    </div>
-    <div class="slideshow-dots" id="dots"></div>
-  </div>: Performances + Community Art -->
+  <!-- PERFORMANCE REEL VIDEO -->
+  <div class="slideshow" aria-label="Performance reel">
+    <video
+      id="perf-reel"
+      autoplay muted loop playsinline
+      style="width:100%;height:100%;object-fit:cover;display:block;">
+      <!--
+        Upload your performance reel MP4 to the repository root and update the src below.
+        Example: <source src="NellaReel.mp4" type="video/mp4" />
+      -->
+      <source src="NellaReel.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- WORK CAROUSEL: Performances + Community Art -->
   <section id="performances">
 
     <div class="perf-header fade-in">
