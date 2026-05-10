@@ -382,8 +382,8 @@
     /* Filter tabs */
     .work-filters {
       display: flex;
-      padding: 3.5rem 3.5rem 3rem;
-      margin-bottom: 0;
+      padding: 4.5rem 3.5rem 0.85rem;
+      margin-bottom: 2.5rem;
       max-width: 1180px;
       margin-left: auto;
       margin-right: auto;
@@ -1225,49 +1225,65 @@
     .section-nav {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: var(--ink);
+      gap: 0;
+      background: var(--white);
     }
 
     .section-nav-item {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       text-decoration: none;
-      display: block;
-      aspect-ratio: 4/3;
-      background: #1e1e1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 3rem 2rem 3rem;
+      background: var(--white);
+      transition: background 0.3s;
+    }
+
+    .section-nav-item:hover { background: var(--paper); }
+
+    /* Circle container */
+    .section-nav-circle {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #222;
+      position: relative;
     }
 
     .section-nav-item img {
-      width: 100%; height: 100%;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
       transition: transform 0.6s ease, filter 0.4s ease;
-      filter: brightness(0.55);
+      filter: brightness(0.6);
     }
 
-    .section-nav-item:hover img {
+    .section-nav-item:hover .section-nav-circle img {
       transform: scale(1.05);
-      filter: brightness(0.25);
+      filter: brightness(0.3);
     }
 
     .section-nav-ph {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       background: #1e1e1a;
-      transition: background 0.3s;
     }
 
-    .section-nav-item:hover .section-nav-ph { background: #141412; }
-
-    /* Always-visible title at bottom */
+    /* Text below circle */
     .section-nav-text {
-      position: absolute;
-      inset: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem;
+      align-items: center;
+      padding: 1.5rem 0 0;
       pointer-events: none;
     }
 
@@ -1275,31 +1291,27 @@
       font-size: 0.58rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.38);
+      color: var(--mid);
       margin-bottom: 0.4rem;
-      transition: color 0.3s;
     }
-
-    .section-nav-item:hover .section-nav-label { color: rgba(255,255,255,0.55); }
 
     .section-nav-title {
       font-family: var(--serif);
-      font-size: clamp(1.2rem, 2vw, 1.65rem);
+      font-size: 1.3rem;
       font-weight: 300;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 0;
-      transition: margin-bottom 0.35s ease;
+      color: var(--ink);
+      line-height: 1.3;
+      text-align: center;
     }
 
-    .section-nav-item:hover .section-nav-title { margin-bottom: 0.75rem; }
-
-    /* Description — hidden, slides up on hover */
     .section-nav-desc {
       font-size: 0.78rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.65);
+      color: var(--mid);
       line-height: 1.7;
+      text-align: center;
+      max-width: 24ch;
+      margin-top: 0.5rem;
       max-height: 0;
       overflow: hidden;
       opacity: 0;
@@ -1313,22 +1325,22 @@
 
     .section-nav-arrow {
       position: absolute;
-      top: 1.5rem; right: 1.5rem;
+      top: 1.5rem;
+      right: 1.5rem;
       font-size: 1rem;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.4);
       transition: color 0.3s, transform 0.3s;
       pointer-events: none;
     }
 
     .section-nav-item:hover .section-nav-arrow {
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.8);
       transform: translate(3px, -3px);
     }
 
-    @media (max-width: 640px) {
-      .section-nav { grid-template-columns: 1fr; gap: 2px; }
-      .section-nav-item { aspect-ratio: 3/1; }
-      .section-nav-desc { max-height: 6rem; opacity: 1; }
+    @media (max-width: 700px) {
+      .section-nav { grid-template-columns: 1fr; }
+      .section-nav-circle { width: 200px; height: 200px; }
     }
 
     /* ── HANDWRITING ANNOTATIONS ── */
@@ -1468,33 +1480,39 @@
   <div class="section-nav">
 
     <a href="#performances" class="section-nav-item">
-      <img src="images/nav-performances.jpg" alt="Performances & Community Art" />
+      <span class="section-nav-arrow">↗</span>
+      <div class="section-nav-circle">
+        <img src="images/nav-performances.jpg" alt="Performances & Community Art" />
+      </div>
       <div class="section-nav-text">
         <span class="section-nav-label">Work</span>
         <span class="section-nav-title">Performances &amp;<br />Community Art</span>
         <p class="section-nav-desc">Stage work, community projects, and participatory art across Finland and internationally.</p>
       </div>
-      <span class="section-nav-arrow">↗</span>
     </a>
 
     <a href="#research" class="section-nav-item">
-      <img src="images/nav-research.png" alt="Research and Scholarship" />
+      <span class="section-nav-arrow">↗</span>
+      <div class="section-nav-circle">
+        <img src="images/nav-research.png" alt="Research and Scholarship" />
+      </div>
       <div class="section-nav-text">
         <span class="section-nav-label">Academic</span>
         <span class="section-nav-title">Research &amp;<br />Scholarship</span>
         <p class="section-nav-desc">Peer-reviewed publications and academic work on eco-social justice in dance education.</p>
       </div>
-      <span class="section-nav-arrow">↗</span>
     </a>
 
     <a href="#coaching" class="section-nav-item">
-      <img src="images/nav-coaching.jpg" alt="Coaching & Embodiment" />
+      <span class="section-nav-arrow">↗</span>
+      <div class="section-nav-circle">
+        <img src="images/nav-coaching.jpg" alt="Coaching & Embodiment" />
+      </div>
       <div class="section-nav-text">
         <span class="section-nav-label">Practice</span>
         <span class="section-nav-title">Coaching &amp;<br />Embodiment</span>
         <p class="section-nav-desc">Workshops, individual coaching, and service design grounded in somatic and movement practice.</p>
       </div>
-      <span class="section-nav-arrow">↗</span>
     </a>
 
   </div>
@@ -1538,16 +1556,21 @@
       <button class="work-filter" data-filter="community">Community Art</button>
 
       <!-- Note 1: above "All" tab, pointing down to it -->
-      <span class="hw-note" style="--hw-rot: -2deg; bottom: 2.8rem; left: 0rem;">
+      <span class="hw-note" style="--hw-rot: -2deg; top: 1.2rem; left: 0rem;">
         explore my work
       </span>
-      <svg class="hw-arrow" style="bottom:1.4rem; left:1rem; width:20px; height:18px;" viewBox="0 0 20 18">
-        <path d="M10 2 L10 14 M5 10 L10 15 L15 10"/>
+      <svg class="hw-arrow" style="top:2.4rem; left:1rem; width:20px; height:18px;" viewBox="0 0 20 18">
+        <path d="M10 2 L10 14 M5 10 L10 15 L15 10" fill="none" stroke="#4a5240" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
 
       <!-- Note 2: above Performances + Community Art tabs -->
-      <span class="hw-note hw-desktop" style="--hw-rot: 1deg; bottom: 2.8rem; left: 8rem;">
+      <span class="hw-note hw-desktop" style="--hw-rot: 1deg; top: 1.2rem; left: 9rem;">
         or filter by type →
+      </span>
+
+      <!-- Note 3: swipe hint far right -->
+      <span class="hw-note" style="--hw-rot: -1.5deg; top: 1.2rem; right: 0; left: auto;">
+        swipe to browse →
       </span>
 
     </div>
