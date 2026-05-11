@@ -94,18 +94,19 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh;
-      min-height: 600px;
+      height: 90vh;
+      min-height: 700px;
       overflow: hidden;
       display: flex;
       align-items: flex-end;
-      padding: 0 0 8vh 5.5vw;
+      padding: 0 0 30vh 5.5vw;
     }
 
     .hero-video {
       position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
+      width: 130%; height: 130%;
+      top: -30%; left: 0%;
+      object-fit: cover; object-position: left center;
       z-index: 0;
     }
 
@@ -155,24 +156,25 @@
 
     .hero-name {
       font-family: var(--display);
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-size: clamp(2.5rem, 6vw, 5rem);
       font-weight: 300;
       line-height: 0.88;
       color: var(--white);
-      margin-bottom: 2.8rem;
+      margin-bottom: 2rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     .hero-tagline {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(1rem, 1.6vw, 1.3rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.72);
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
       max-width: 44ch;
       line-height: 1.65;
       margin-bottom: 2.5rem;
+      letter-spacing: 0.04em;
     }
 
     .hero-scroll-hint {
@@ -294,6 +296,7 @@
       min-height: 300px;
       background: var(--ink);
       overflow: hidden;
+      margin-top: 5rem;
     }
 
     .slides {
@@ -1254,6 +1257,7 @@
       padding: 3rem 2rem 3rem;
       background: var(--white);
       transition: background 0.3s;
+      height: 480px;
     }
 
     .section-nav-item:hover { background: var(--white); }
@@ -1268,6 +1272,8 @@
       background: #222;
       position: relative;
       transition: transform 0.4s ease;
+      contain: layout;
+      will-change: transform;
     }
 
     .section-nav-item:hover .section-nav-circle { transform: scale(1.06); }
@@ -1571,21 +1577,13 @@
       <button class="work-filter" data-filter="performance">Performances</button>
       <button class="work-filter" data-filter="community">Community Art</button>
 
-      <!-- Note 1: above "All" tab, pointing down to it -->
-      <span class="hw-note" style="--hw-rot: -2deg; top: 1.2rem; left: 0rem;">
-        explore my work
-      </span>
-      <svg class="hw-arrow" style="top:2.4rem; left:1rem; width:20px; height:18px;" viewBox="0 0 20 18">
-        <path d="M10 2 L10 14 M5 10 L10 15 L15 10" fill="none" stroke="#4a5240" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-
-      <!-- Note 2: above Performances + Community Art tabs -->
-      <span class="hw-note hw-desktop" style="--hw-rot: 1deg; top: 1.2rem; left: 9rem;">
-        or filter by type →
+     <!-- Note 1: left side -->
+      <span class="hw-note" style="--hw-rot: -1.5deg; top: 1.2rem; left: 0rem;">
+        explore my work or filter by type
       </span>
 
-      <!-- Note 3: swipe hint far right -->
-      <span class="hw-note" style="--hw-rot: -1.5deg; top: 1.2rem; right: 0; left: auto;">
+      <!-- Note 2: swipe hint far right -->
+      <span class="hw-note" style="--hw-rot: -1deg; top: 1.2rem; right: 0; left: auto;">
         swipe to browse →
       </span>
 
