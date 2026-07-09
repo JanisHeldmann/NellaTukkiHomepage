@@ -1257,6 +1257,10 @@
         padding: 5rem 1.5rem;
       }
 
+      /* Carousel section is full-bleed on mobile; inner elements manage their own
+         side padding, so remove the section padding to stop cards being wider than the track */
+      #performances { padding-left: 0; padding-right: 0; }
+
       .intro-inner { grid-template-columns: 1fr; gap: 3rem; }
       .community-header, .research-header, .coaching-header, .contact-left { grid-column: 1; }
       .community-header, .research-header, .coaching-header { grid-template-columns: 1fr; gap: 2rem; }
