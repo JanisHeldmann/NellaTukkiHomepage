@@ -511,7 +511,6 @@
       flex-shrink: 0;
       background: var(--white);
       border: 0.5px solid var(--rule);
-      overflow: hidden;
       align-items: stretch;
     }
 
@@ -1224,7 +1223,7 @@
       .hero-video {
         width: 100%; height: 100%;
         top: 0; left: 0;
-        object-position: 30% center;
+        object-position: center center;
       }
 
       /* Hamburger toggle button */
@@ -1265,9 +1264,9 @@
       .research-areas { grid-template-columns: 1fr; gap: 2px; }
       .coaching-grid { grid-template-columns: 1fr; gap: 2px; }
 
-      .perf-card { grid-template-columns: 1fr; min-width: calc(100vw - 3rem); min-height: auto; }
+      .perf-card { display: block; min-width: calc(100vw - 3rem); min-height: auto; }
       .perf-text { padding: 2rem 1.5rem; }
-      .perf-img { height: 56vw; max-height: 320px; min-height: 200px; }
+      .perf-img { position: relative; width: 100%; height: 56vw; max-height: 320px; min-height: 200px; }
       .perf-img-ph { min-height: 240px; }
       .perf-carousel-wrap { padding: 0 1.5rem; }
       .perf-header, .perf-progress { padding-left: 1.5rem; padding-right: 1.5rem; }
