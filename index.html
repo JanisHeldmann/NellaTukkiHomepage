@@ -45,6 +45,7 @@
       background: var(--white);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── NAV ── */
@@ -89,6 +90,9 @@
     }
 
     .nav-links a:hover { color: var(--ink); }
+
+    /* Hamburger toggle — hidden on desktop */
+    .nav-toggle { display: none; }
 
     /* ── HERO ── */
     .hero {
@@ -1213,8 +1217,33 @@
     /* ── MOBILE ── */
     @media (max-width: 960px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .nav-links a { font-size: 0.6rem; letter-spacing: 0.12em; }
+
+      /* Hamburger toggle button */
+      .nav-toggle {
+        display: flex; flex-direction: column; justify-content: center; gap: 4px;
+        width: 32px; height: 32px; background: none; border: none;
+        cursor: pointer; padding: 0; z-index: 320;
+      }
+      .nav-toggle span {
+        display: block; height: 1.5px; width: 22px; background: var(--ink);
+        transition: transform 0.3s, opacity 0.3s;
+      }
+      .nav-toggle.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+      /* Slide-in panel */
+      .nav-links {
+        position: fixed; top: 0; right: 0; height: 100vh;
+        width: min(72vw, 300px); flex-direction: column;
+        gap: 1.8rem; padding: 6rem 2.5rem;
+        background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
+        border-left: 0.5px solid var(--rule);
+        transform: translateX(100%); transition: transform 0.35s ease;
+        box-shadow: -8px 0 30px rgba(0,0,0,0.06);
+      }
+      .nav-links.open { transform: translateX(0); }
+      .nav-links a { font-size: 0.8rem; letter-spacing: 0.16em; }
 
       #intro, #performances, #community, #research, #coaching, #contact {
         padding: 5rem 1.5rem;
@@ -1232,6 +1261,16 @@
       .perf-img, .perf-img-ph { min-height: 240px; }
       .perf-carousel-wrap { padding: 0 1.5rem; }
       .perf-header, .perf-progress { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+      /* Work filter tabs — reduce side padding so buttons aren't pinched */
+      .work-filters { padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 3rem; }
+
+      /* Research tabs — allow horizontal scroll instead of overflowing the screen */
+      .research-tabs {
+        overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      .research-tabs::-webkit-scrollbar { display: none; }
+      .research-tab { white-space: nowrap; flex-shrink: 0; margin-right: 1.4rem; }
 
       #contact .inner { grid-template-columns: 1fr; gap: 3rem; }
 
@@ -1436,7 +1475,10 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Nella Turkki</a>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#intro">About</a></li>
       <li><a href="#performances">Performances</a></li>
       <li><a href="#community">Community Art</a></li>
@@ -1578,12 +1620,12 @@
       <button class="work-filter" data-filter="community">Community Art</button>
 
      <!-- Note 1: left side -->
-      <span class="hw-note" style="--hw-rot: -1.5deg; top: 1.2rem; left: 0rem;">
+      <span class="hw-note hw-desktop" style="--hw-rot: -1.5deg; top: 1.2rem; left: 0rem;">
         explore my work or filter by type
       </span>
 
       <!-- Note 2: swipe hint far right -->
-      <span class="hw-note" style="--hw-rot: -1deg; top: 1.2rem; right: 0; left: auto;">
+      <span class="hw-note hw-desktop" style="--hw-rot: -1deg; top: 1.2rem; right: 0; left: auto;">
         swipe to browse →
       </span>
 
@@ -2111,8 +2153,27 @@
     <span class="footer-copy">&copy; 2026 · Vaasa, Finland</span>
   </footer>
 
-  <!-- JS: SLIDESHOW + CAROUSEL + SCROLL FADE -->
+  <!-- JS: NAV + SLIDESHOW + CAROUSEL + SCROLL FADE -->
   <script>
+    // Mobile hamburger nav
+    (function () {
+      const toggle = document.getElementById('nav-toggle');
+      const links  = document.getElementById('nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () {
+        const open = links.classList.toggle('open');
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open);
+      });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
     // Hero slideshow
     (function () {
       const slides = document.querySelectorAll('.slide');
