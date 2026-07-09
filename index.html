@@ -108,9 +108,8 @@
 
     .hero-video {
       position: absolute; inset: 0;
-      width: 130%; height: 130%;
-      top: -30%; left: 0%;
-      object-fit: cover; object-position: left center;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: right center;
       z-index: 0;
     }
 
@@ -506,19 +505,20 @@
       grid-template-columns: 1fr 1fr;
       min-width: calc(100vw - 7rem);
       max-width: 1180px;
-      min-height: 480px;
+      min-height: 460px;
       scroll-snap-align: start;
       flex-shrink: 0;
       background: var(--white);
       border: 0.5px solid var(--rule);
+      overflow: hidden;
+      align-items: stretch;
     }
 
     .perf-img {
       background: var(--paper2);
       overflow: hidden;
-      min-height: 380px;
-      aspect-ratio: 1 / 1;
       position: relative;
+      min-width: 0;
     }
 
     .perf-img img {
@@ -541,6 +541,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-width: 0;
     }
 
     .perf-year {
@@ -1256,9 +1257,10 @@
       .research-areas { grid-template-columns: 1fr; gap: 2px; }
       .coaching-grid { grid-template-columns: 1fr; gap: 2px; }
 
-      .perf-card { grid-template-columns: 1fr; min-width: calc(100vw - 3rem); }
+      .perf-card { grid-template-columns: 1fr; min-width: calc(100vw - 3rem); min-height: auto; }
       .perf-text { padding: 2rem 1.5rem; }
-      .perf-img, .perf-img-ph { min-height: 240px; }
+      .perf-img { height: 56vw; max-height: 320px; min-height: 200px; }
+      .perf-img-ph { min-height: 240px; }
       .perf-carousel-wrap { padding: 0 1.5rem; }
       .perf-header, .perf-progress { padding-left: 1.5rem; padding-right: 1.5rem; }
 
@@ -2124,7 +2126,7 @@
           For performance inquiries, workshop bookings, research collaborations, residency proposals, or PhD supervision conversations — Nella welcomes contact.
         </p>
         <!-- Replace with real email -->
-        <a href="mailto:nella@example.com" class="contact-email">nella@example.com</a>
+        <a href="mailto:nella.turkki@gmail.com" class="contact-email">nella@example.com</a>
       </div>
       <div class="contact-right fade-in">
         <h3>Open to</h3>
