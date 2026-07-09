@@ -705,6 +705,23 @@
       color: rgba(255,255,255,0.45);
     }
 
+    /* Research section — swap the thin display serif for a more readable face.
+       Applies to every header/title inside #research only. Change 'Montserrat'
+       below if you'd prefer a different font. */
+    #research .research-header h2,
+    #research .research-header h2 em,
+    #research .research-area h4,
+    #research .phd-callout p,
+    #research .pub-title,
+    #research .rc-item-title,
+    #research .rc-item-sub {
+      font-family: 'Montserrat', system-ui, sans-serif;
+      font-weight: 400;
+    }
+    /* Keep the big section heading airy but still readable */
+    #research .research-header h2 { font-weight: 500; }
+    #research .phd-callout p { font-style: normal; }
+
     .research-header-right p {
       font-size: 0.95rem;
       font-weight: 300;
@@ -2137,7 +2154,7 @@
           For performance inquiries, workshop bookings, research collaborations, residency proposals, or PhD supervision conversations — Nella welcomes contact.
         </p>
         <!-- Replace with real email -->
-        <a href="mailto:nella@example.com" class="contact-email">nella@example.com</a>
+        <a href="mailto:nella.turkki@gmail.com" class="contact-email">nella.turkki@gmail.com</a>
       </div>
       <div class="contact-right fade-in">
         <h3>Open to</h3>
