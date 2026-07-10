@@ -1427,8 +1427,57 @@
     }
 
     @media (max-width: 700px) {
+      /* Compact horizontal rows instead of tall stacked circles */
       .section-nav { grid-template-columns: 1fr; }
-      .section-nav-circle { width: 200px; height: 200px; }
+
+      .section-nav-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1.1rem;
+        height: auto;
+        padding: 1.3rem 1.5rem;
+        border-bottom: 0.5px solid var(--rule);
+      }
+      .section-nav-item:last-child { border-bottom: none; }
+
+      .section-nav-circle {
+        width: 76px;
+        height: 76px;
+      }
+      /* No hover on touch — keep the image at a steady, readable brightness */
+      .section-nav-item img { filter: brightness(0.85); }
+
+      .section-nav-text {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 0;
+        flex: 1;
+      }
+
+      .section-nav-label { margin-bottom: 0.25rem; }
+
+      .section-nav-title {
+        text-align: left;
+        font-size: 1.1rem;
+        line-height: 1.25;
+      }
+      /* Titles use <br> for the desktop two-line look; let them flow on mobile */
+      .section-nav-title br { display: none; }
+
+      /* Show the description by default since there's no hover */
+      .section-nav-desc {
+        max-height: none;
+        opacity: 1;
+        text-align: left;
+        max-width: none;
+        margin-top: 0.4rem;
+        overflow: visible;
+      }
+
+      /* The corner arrow is invisible on a white row background — hide it */
+      .section-nav-arrow { display: none; }
     }
 
     /* ── HANDWRITING ANNOTATIONS ── */
